@@ -48,6 +48,10 @@ public class MyResource{
     	
 		System.out.println("hhhhh");
 		System.out.println(instructor); 
+		
+		String pwd = instructor.getPassword();
+		instructor.setPassword(securepassword(pwd));
+		
     	InstructorDAO instructorDAO = new InstructorDAO();
     	instructorDAO.register(instructor);
     	
@@ -61,10 +65,21 @@ public class MyResource{
 		
 		System.out.println(learner); 
 		
+		String pwd = learner.getPassword();
+		learner.setPassword(securepassword(pwd));
+		
 		LearnerDAO learnerDAO = new LearnerDAO();
   	    learnerDAO.register(learner);
     	
     }
+	
+	public String securepassword(String pwd){
+		char[] chars = pwd.toCharArray();
+		for (int i=0; i<chars.length; i++){
+			chars[i] += 5;}
+			String str2 = String.valueOf(chars);
+		return str2 ;
+	}
 	 @Path("registerSubject")
 	    @POST
 	    @Produces(MediaType.TEXT_PLAIN)
@@ -87,7 +102,14 @@ public class MyResource{
 		System.out.println(mail_id);
 		System.out.println(password);
 		LearnerDAO  learnerDAO = new LearnerDAO();
-		Learner learner = learnerDAO.getUserPass(mail_id,password);
+		
+		char[] chars = password.toCharArray();
+		System.out.println(password);
+		for (int i=0; i<chars.length; i++){
+			chars[i] += 5;}
+		String str2 = String.valueOf(chars);
+		
+		Learner learner = learnerDAO.getUserPass(mail_id,str2);
 		return learner;
 		
     	 }
@@ -98,8 +120,17 @@ public class MyResource{
 	public Instructor getUserPassI(@PathParam("mail_id") String mail_id,@PathParam("password") String password){
 		
 		System.out.println("recieved in path params: " + mail_id + " "+ password);
+		
 		InstructorDAO  instructorDAO = new InstructorDAO();
-		Instructor instructor = instructorDAO.getUserPass(mail_id,password);
+		char[] chars = password.toCharArray();
+		System.out.println(password);
+		for (int i=0; i<chars.length; i++){
+			chars[i] += 5;}
+		String str2 = String.valueOf(chars);
+	
+		
+		
+		Instructor instructor = instructorDAO.getUserPass(mail_id,str2);
 		return instructor;
 		
     	 }
