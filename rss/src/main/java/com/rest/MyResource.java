@@ -76,7 +76,7 @@ public class MyResource{
 	public String securepassword(String pwd){
 		char[] chars = pwd.toCharArray();
 		for (int i=0; i<chars.length; i++){
-			chars[i] += 5;}
+			chars[i] += 15;}
 			String str2 = String.valueOf(chars);
 		return str2 ;
 	}
@@ -106,7 +106,7 @@ public class MyResource{
 		char[] chars = password.toCharArray();
 		System.out.println(password);
 		for (int i=0; i<chars.length; i++){
-			chars[i] += 5;}
+			chars[i] += 15;}
 		String str2 = String.valueOf(chars);
 		
 		Learner learner = learnerDAO.getUserPass(mail_id,str2);
@@ -125,7 +125,7 @@ public class MyResource{
 		char[] chars = password.toCharArray();
 		System.out.println(password);
 		for (int i=0; i<chars.length; i++){
-			chars[i] += 5;}
+			chars[i] += 15;}
 		String str2 = String.valueOf(chars);
 	
 		
