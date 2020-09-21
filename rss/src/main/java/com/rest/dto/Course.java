@@ -17,6 +17,7 @@ public class Course {
 	@Id@GeneratedValue 
 	private int course_id;
 	private String image_name;
+	private String video_name;
 	private String course_name;
 	private String course_description;
 	private String course_offeredby;
@@ -33,11 +34,12 @@ public class Course {
 
 	
 
-	public Course(int course_id, String image_name,String course_name,  String course_description,String course_offeredby,
+	public Course(int course_id, String image_name,String video_name,String course_name,  String course_description,String course_offeredby,
 			Subject subject) {
 		super();
 		this.course_id = course_id;
 		this.image_name = image_name;
+		this.video_name = video_name;
 		this.course_name = course_name;
 		this.course_offeredby = course_offeredby;
 		this.course_description = course_description;
@@ -96,6 +98,18 @@ public class Course {
 
 	public void setSubject(Subject subject) {
 		this.subject = subject;
+	}
+
+
+
+	public String getVideo_name() {
+		return video_name;
+	}
+
+
+
+	public void setVideo_name(String video_name) {
+		this.video_name = video_name;
 	}
 
 

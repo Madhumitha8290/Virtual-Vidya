@@ -181,8 +181,8 @@ public class MyResource{
 	@POST
 	@Path("/uploadImage")
 	@Consumes({MediaType.MULTIPART_FORM_DATA})
-	public void uploadImage(@FormDataParam("Image") InputStream fileInputStream,@FormDataParam("Image") FormDataContentDisposition
-			formDataContentDisposition,@FormDataParam("course_name") String course_name,@FormDataParam("course_description") String course_description, @FormDataParam("subject") String subjectd) throws IOException{
+	public void uploadImage(@FormDataParam("Video") InputStream fileInputStream1 ,@FormDataParam("Video") FormDataContentDisposition
+			formDataContentDisposition1,@FormDataParam("course_name") String course_name,@FormDataParam("course_description") String course_description, @FormDataParam("subject") String subjectd) throws IOException{
 		ObjectMapper objMapper = new ObjectMapper();
 		Subject subject = objMapper.readValue(subjectd, Subject.class);
 		
@@ -192,19 +192,22 @@ public class MyResource{
 		String path = this.getClass().getClassLoader().getResource("").getPath();
 		String pathArr[] = path.split("/WEB-INF/classes/");
 
-		FileOutputStream out = new FileOutputStream(new File(pathArr[0] + "/image",formDataContentDisposition.getFileName()));
-
-		while((read = fileInputStream.read(bytes)) != -1){
-			out.write(bytes,0,read);
-		}
-		out.flush();
-		out.close();
+		FileOutputStream out1= new FileOutputStream(new File(pathArr[0]+"/video/",formDataContentDisposition1.getFileName()));
+		   
+		
+		
+		
+		 while((read=fileInputStream1.read(bytes)) != -1){
+			  out1.write(bytes, 0, read);
+			  }
+			  out1.flush();
+			  out1.close();
 		
 		Course course = new Course();
 		course.setCourse_name(course_name);
 		course.setCourse_description(course_description);
 		
-		course.setImage_name(formDataContentDisposition.getFileName());
+		course.setVideo_name(formDataContentDisposition1.getFileName());
 		course.setSubject(subject);
 		CourseDAO courseDAO = new CourseDAO();
 		courseDAO.register(course);
